@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Motion Testing</title>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8" />        
+    <link rel="stylesheet" href="./styles/dropdown.css">
+    <link rel="stylesheet" href="./styles/simple-style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="./libraries/d3.js"></script>
+    <script src="./libraries/jquery-3.2.1.min.js"></script>
+</head>
+
+<body>
+
+
+
+<div id="heading">
+<h2 style="text-align:center;">Perception of Motion in Graph</h2>
+</div>
+
+<div> <p align="center"> Thank You for participating in the test.</p> </div>
+
+<div>
+    <form  method="post" action="Start.html" id="end_form">
+
+    </form>  
+    <button id="submitForm" type="submit" form="end_form" value="Submit">Take the test again</button> 
+
+</div>
+
+<script>
+
+	var data=[];
+	data=getCookie("user_selection");
+	console.log(data);
+
+	function getCookie(cname) {
+    var name = cname + "=";
+    var ca = document.cookie.split(';');
+    for(var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+
+}
+
+WriteFile();
+function WriteFile(){
+    
+	//save_json();
+
+	var jsonContent = "text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(data));
+	var a = document.createElement('a');
+	a.href = 'data:' + jsonContent;
+	a.download = 'motion1_non.json';
+	//a.innerHTML = 'End Study';
+	a.click();
+  location.href="./end.html";
+	
+}
+
+</script>
+
+</body>
+</html>
